@@ -1,5 +1,14 @@
-import React, { useState } from "react";
-import { Card, Button, Row, Col, Image, Media, Modal } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  Button,
+  Row,
+  Col,
+  Image,
+  Media,
+  Modal,
+  Alert
+} from "react-bootstrap";
 import {
   TwitterTimelineEmbed,
   TwitterShareButton,
@@ -12,14 +21,52 @@ import {
   TwitterVideoEmbed,
   TwitterOnAirButton
 } from "react-twitter-embed";
+import { Link } from "react-router-dom";
+import { addFavorie, getFavoris } from "../pages/FavorisFunctions";
 
 const SingleTweetMedia = props => {
+  // console.log(props);
   const { tweet } = props;
   // console.log(tweet);
   const [show, setShow] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [favoris, setFavoris] = useState([]);
+
+  const [showError, setShowError] = useState(false);
+  // useEffect(() => {
+  //   // console.log("test");
+  //   getFavoris().then(res => {
+  //     setFavoris(res.data.user.favoris);
+  //   });
+  // }, []);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleAddFav = (id_str, name, profile_image_url, text) => {
+    addFavorie({
+      twitterID: id_str,
+      name: name,
+      avatar: profile_image_url,
+      text: text
+    }).then(res => {
+      if (res.status == 200) {
+        setErrors({});
+        setErrors({ Msg: "Tweet Added", color: "success" });
+        setShowError(true);
+        setTimeout(() => {
+          setShowError(false);
+        }, 3000);
+      } else if (res && res.status == 403) {
+        setErrors({ Msg: "Tweet already exist", color: "danger" });
+        setShowError(true);
+        setTimeout(() => {
+          setShowError(false);
+        }, 3000);
+      }
+    });
+    // console.log(id_str);
+  };
 
   return (
     <>
@@ -28,6 +75,7 @@ const SingleTweetMedia = props => {
         style={{ height: "350px" }}
       >
         <div>
+          {/* <Alert variant="danger">"{error.Msg}"</Alert> */}
           <Media className="align-items-center">
             <img
               width={60}
@@ -74,9 +122,29 @@ const SingleTweetMedia = props => {
         </div>
         <div className="row justify-content-between  pr-3 py-2 align-items-center">
           <div className="col-6">
-            <span className="c-gray ft-400 mb-3">6:14 PM</span>
+            <span className="c-gray ft-400 mb-3">
+              {tweet.created_at.substring(0, 10)}
+            </span>
           </div>
-          <div className="">
+          <div className="error-alert">
+            <div className="e-alert-alert">
+              {showError && <Alert variant={errors.color}>{errors.Msg}</Alert>}
+            </div>
+
+            <a
+              onClick={() =>
+                handleAddFav(
+                  tweet.id_str,
+                  tweet.user.name,
+                  tweet.user.profile_image_url,
+                  tweet.text
+                )
+              }
+              // to={`/favoris/${tweet.id_str}`}
+              className="c-white p-2 b-twitter rounded btn-more  bg-red mr-2 "
+            >
+              <i className="fa fa fa-fw fa-heart text-white "></i>
+            </a>
             <a
               onClick={handleShow}
               className="c-white p-2 b-twitter rounded btn-more"

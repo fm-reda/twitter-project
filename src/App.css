@@ -87,6 +87,15 @@ pre {
 .c-white {
   color: #fff !important;
 }
+.c-green {
+  color: rgb(21, 172, 71) !important;
+}
+.bg-red {
+  background: #e64141 !important;
+}
+.bg-green {
+  background: #41e673 !important;
+}
 .c-twitter {
   color: #1da1f2;
 }
@@ -117,12 +126,18 @@ pre {
 .text22 {
   font-size: 22px !important;
 }
+.text30 {
+  font-size: 30px !important;
+}
 
 .bold {
   font-weight: bold;
 }
 .ft400 {
   font-weight: 600 !important;
+}
+.ft500 {
+  font-weight: 500 !important;
 }
 /* margin */
 .p-col {
@@ -136,6 +151,7 @@ pre {
   color: #222;
   margin: 10px 0;
   border-radius: 5px;
+  position: relative;
 }
 .box-rounded {
   border-radius: 15px !important;
@@ -166,4 +182,56 @@ pre {
   font-size: 20px;
   border: 1px solid #555;
   background-color: #1da1f2;
+}
+
+.username a {
+  color: #fff;
+  font-size: 25px;
+  font-weight: 500;
+}
+.username a:hover {
+  color: #fff;
+}
+.dp-user a {
+  color: #222;
+  font-size: 18px;
+}
+.dp-user a:hover {
+  text-decoration: none;
+  color: #aaa;
+}
+.error-alert {
+  position: relative;
+}
+.e-alert-alert {
+  position: absolute;
+  top: -60px;
+  left: -110px;
+  width: 200px;
+}
+.my-col {
+  width: 31%;
+  margin-right: 25px;
+}
+
+.alertFav {
+  z-index: 5;
+  width: 100%;
+  position: absolute;
+  bottom: -70px;
+  left: 0;
+}
+.abs-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.box-live {
+  padding: 10px;
+  box-shadow: 0 0 2px #555;
+  background-color: #fff;
+  color: #222;
+  margin: 10px 0;
+  border-radius: 5px;
+  position: relative;
 }

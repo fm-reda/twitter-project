@@ -30,7 +30,9 @@ export const login = user => {
       }
     )
     .then(res => {
-      localStorage.setItem("usertoken", res.data.token);
+      localStorage.setItem("usertoken", res.data.access_token);
+      localStorage.setItem("name", res.data.user.name);
+      console.log(res);
     })
     .catch(err => {
       console.log(err);
@@ -51,3 +53,4 @@ export const getProfile = newUser => {
       console.log(err);
     });
 };
+

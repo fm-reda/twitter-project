@@ -59,7 +59,9 @@ const Home = props => {
         setRequestStatusTrend(false);
       }, 1000);
       // console.log(res);
-      setTrends(res.data.statuses);
+      if (res && res.status == 200) {
+        setTrends(res.data.statuses);
+      }
     });
   }, [update]);
   // functions
@@ -70,8 +72,10 @@ const Home = props => {
       setTimeout(() => {
         setRequestStatus(false);
       }, 1000);
-      // console.log(res);
       setTweets(res.data.statuses);
+      if (res && res === 200) {
+      }
+      // console.log(res);
     });
   };
   const handleClik = () => {
@@ -227,8 +231,8 @@ const Home = props => {
             </div>
           ) : (
             <Row className="bg-light m-0 py-3">
-              {tweets.map(item => (
-                <Col xs={4} className=" p-col mb-3">
+              {tweets.map((item, i) => (
+                <Col xs={4} key={i} className=" p-col mb-3">
                   <SingleTweetMedia tweet={item} />
                 </Col>
               ))}
@@ -306,7 +310,6 @@ const Home = props => {
         </div> */}
       </div>
       {/* end right section */}
-
     </div>
   );
 };

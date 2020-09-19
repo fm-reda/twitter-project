@@ -13,8 +13,12 @@ import Live from "./pages/Live";
 import "./App.css";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Favoris from "./pages/Favoris";
 
 const App = props => {
+  // useEffect(() => {
+  
+  // }, [])
   return (
     <>
       <Router>
@@ -66,6 +70,18 @@ const App = props => {
               path="/signup"
               render={props => (
                 <Register
+                  exact
+                  {...props}
+                  // loggedInStatus={loggedInStatus}
+                  // handleLogout={handleLogout}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/favoris"
+              render={props => (
+                <Favoris
                   exact
                   {...props}
                   // loggedInStatus={loggedInStatus}
