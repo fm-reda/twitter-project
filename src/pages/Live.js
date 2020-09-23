@@ -32,7 +32,7 @@ export default class Live extends Component {
 
     this.state = {
       tweet: [],
-      rules: { value: "france", tag: "maroc" },
+      rules: { value: "morocco", tag: "maroc" },
 
       search: "",
       result_type: "mixed",
@@ -56,8 +56,8 @@ export default class Live extends Component {
   //******************************************************** */ start streamconect
   streamConnect(token, source, stream) {
     if (source == "stop") {
-      console.log("ggggggggggggggggggggggggggggggggg");
-      stream.abort();
+      // console.log("ggggggggggggggggggggggggggggggggg");
+      // stream.abort();
       //
       stream.on("disconnect", data => {});
       // stream.abort();
@@ -105,6 +105,8 @@ export default class Live extends Component {
   }
 
   handleStartLive = () => {
+    this.setState({ tweet: [] });
+
     const config = {
       url:
         "https://cors-anywhere.herokuapp.com/" +
@@ -117,8 +119,11 @@ export default class Live extends Component {
       timeout: 20000
     };
     // Listen to the stream
+
     this.setState({ stream: this.request.get(config) });
+
     console.log(this.request.get(config));
+
     // const stream = this.request.get(config);
 
     this.setState({ connecting: true });
@@ -301,6 +306,8 @@ export default class Live extends Component {
   //   this.setState({ cors2: "" });
   // };
   handleStopLive = () => {
+    this.setState({ goLiveStatus: false });
+    this.setState({ connecting: false });
     console.log(this.state.stream);
     const stopStream = this.state.stream;
     stopStream.abort();

@@ -148,7 +148,7 @@ const Home = props => {
       <div className="col-lg-9">
         <div className="box rounded p-2">
           <h1>Welcom,</h1>
-          <p>Seach for tweets or choose a word for stream tweets.</p>
+          <p className="text18 p-2">Search For Tweets.</p>
         </div>
         <div className="box ">
           {/* start Form searching */}

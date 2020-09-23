@@ -36,7 +36,7 @@ class Header extends Component {
                 </Link> */}
 
                 <Link className="nav-link c-white" to="/live">
-                  live
+                  Live
                 </Link>
                 {/* <Nav.Link href="#link">Link</Nav.Link> */}
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
